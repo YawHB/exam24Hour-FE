@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IAthlete, IDiscipline } from '../../../models/athlete';
 import { Button, Dialog, Card, CardBody, CardFooter, Typography, Input, Checkbox } from '@material-tailwind/react';
 import { getAllDisciplines } from '../../../apiHandlers/get/apiGetAllDisciplines';
+import apiUpdateAthlete from '../../../apiHandlers/put/apiUpdateAthlete';
 
 interface DialogWithFormProps {
     open: boolean;
@@ -59,6 +60,8 @@ export default function EditAthleteModal({ open, onClose, athlete }: DialogWithF
         };
         // Log det opdaterede atletobjekt
         console.log(updatedAthlete);
+        //? Lav fetch request til API for at opdatere atletten
+        apiUpdateAthlete(updatedAthlete);
         onClose();
     }
 
