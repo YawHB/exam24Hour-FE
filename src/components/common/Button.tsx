@@ -7,8 +7,6 @@ type props = {
 };
 
 export default function ButtonProp({ onClick, children, buttonType }: props) {
-    console.log(buttonType);
-
     const btnColor = buttonType == 'cta' ? 'green' : buttonType == 'cancel' ? 'red' : 'black';
 
     return (
