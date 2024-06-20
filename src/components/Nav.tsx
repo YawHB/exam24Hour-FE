@@ -9,7 +9,16 @@ export default function Nav() {
                         <NavLink to="/">Home</NavLink>
                     </div>
                     <div>
-                        <NavLink to="profile">Profile</NavLink>
+                        <NavLink to="athletes">Athletes</NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="athlete-details">Athlete Details</NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="disciplines">Athlete Details</NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="results">Athlete Details</NavLink>
                     </div>
                 </nav>
             </header>
