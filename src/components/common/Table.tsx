@@ -1,5 +1,5 @@
 import { Card, Typography } from '@material-tailwind/react';
-import { getUsers } from '../../apiHandlers/apiRead';
+import { getUsers } from '../../apiHandlers/get/apiRead';
 import { useEffect, useState } from 'react';
 import ButtonProp from './Button';
 import UserModal from './modals/UserModal';

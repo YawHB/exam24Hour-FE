@@ -1,4 +1,4 @@
-interface IDiscipline {
+export interface IDiscipline {
     id?: number;
     name: string;
 }

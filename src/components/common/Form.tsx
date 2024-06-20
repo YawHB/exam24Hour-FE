@@ -1,5 +1,7 @@
 import { Card, Input, Button, Typography } from '@material-tailwind/react';
 import { useState } from 'react';
+import { createAthlete } from '../../apiHandlers/post/apiCreateAthlete';
+//import { IDiscipline } from '../../models/athlete';
 
 export default function Form() {
     const [name, setName] = useState('');
@@ -7,18 +9,29 @@ export default function Form() {
     const [age, setAge] = useState('');
     const [club, setClub] = useState('');
     const [disciplines, setDisciplines] = useState('');
+    //const [availableDisciplines, setAvailableDisciplines] = useState([]);
 
-    const handleSubmit = (event) => {
+    // useEffect(() => {
+    //     getAllDisciplines()
+    //         .then((disciplines) => setAvailableDisciplines(disciplines))
+    //         .catch((error) => console.error(error));
+    // }, []);
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const athlete = {
             name,
             sex,
-            age,
+            age: parseInt(age),
             club,
             disciplines: disciplines.split(',').map((discipline) => discipline.trim()),
         };
         console.log(athlete);
+
+        createAthlete(athlete)
+            .then((createdAthlete) => console.log(createdAthlete))
+            .catch((error) => console.error(error));
     };
 
     return (
@@ -113,3 +126,19 @@ export default function Form() {
         </Card>
     );
 }
+
+/**
+ * 
+ * <Input
+                        type="text"
+                        size="lg"
+                        placeholder="discipin1, disciplin2... disciplinN"
+                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                        labelProps={{
+                            className: 'before:content-none after:content-none',
+                        }}
+                        crossOrigin=""
+                        value={disciplines}
+                        onChange={(event) => setDisciplines(event.target.value)}
+                    />
+ */
