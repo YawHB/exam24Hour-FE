@@ -1,25 +1,31 @@
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from '@material-tailwind/react';
-import { IUser } from '../../../models/athlete';
+import { IAthlete } from '../../../models/athlete';
 
-type UserModalProps = {
-    user: IUser | null;
+type AthleteModalProps = {
+    athlete: IAthlete | null;
     open: boolean;
     onClose: () => void;
 };
 
-export default function UserModal({ user, open, onClose }: UserModalProps) {
-    if (!user) {
+export default function UserModal({ athlete, open, onClose }: AthleteModalProps) {
+    if (!athlete) {
         return null;
     }
     return (
         <>
             <Dialog open={open} handler={onClose}>
-                <DialogHeader>Detailed info for {user?.username}</DialogHeader>
+                <DialogHeader>Detailed info for {athlete?.name}</DialogHeader>
                 <DialogBody>
                     <div>
-                        <p>Username: {user?.username}</p>
-                        <p>Email: {user?.email}</p>
-                        <p>Id: {user?.id}</p>
+                        <p>Navn: {athlete?.name}</p>
+                        <p>Id: {athlete?.id}</p>
+                        <p>Køn: {athlete?.sex}</p>
+                        <p>Alder: {athlete?.age}</p>
+                        <p>Klub: {athlete?.club}</p>
+                        <p className="font-bold">Disciplin:</p>
+                        {athlete?.disciplines?.map((discipline, index) => (
+                            <p key={index}> {discipline.name}</p>
+                        ))}{' '}
                     </div>
                 </DialogBody>
                 <DialogFooter>

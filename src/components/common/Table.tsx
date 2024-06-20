@@ -8,13 +8,13 @@ import { IAthlete } from '../../models/athlete';
 const TABLE_HEAD = ['Navn', 'Køn', 'Alder', 'Klub', ''];
 
 export default function Table() {
-    const [users, setUsers] = useState<IAthlete[]>([]);
+    const [athlete, setAthlete] = useState<IAthlete[]>([]);
     const [selectedUser, setSelectedUser] = useState<IAthlete | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         getUsers().then((data) => {
-            setUsers(data);
+            setAthlete(data);
         });
     }, []);
 
@@ -45,7 +45,7 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(({ id, name, sex, age, club }) => (
+                    {athlete.map(({ id, name, sex, age, club }) => (
                         <tr key={id} className="even:bg-gray-50 odd:bg-gray-200 hover:bg-gray-400">
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
@@ -69,7 +69,7 @@ export default function Table() {
                             </td>
                             <td className="p-4">
                                 <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
-                                    <ButtonProp onClick={() => onEditClick(users.find((user) => user.id === id))} buttonType="neutral">
+                                    <ButtonProp onClick={() => onEditClick(athlete.find((athlete) => athlete.id === id))} buttonType="neutral">
                                         Details
                                     </ButtonProp>
                                 </Typography>
@@ -78,7 +78,7 @@ export default function Table() {
                     ))}
                 </tbody>
             </table>
-            <UserModal user={selectedUser} open={isModalOpen} onClose={closeModal} />
+            <UserModal athlete={selectedUser} open={isModalOpen} onClose={closeModal} />
         </Card>
     );
 }
