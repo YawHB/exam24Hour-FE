@@ -3,13 +3,13 @@ import { getUsers } from '../../apiHandlers/apiRead';
 import { useEffect, useState } from 'react';
 import ButtonProp from './Button';
 import UserModal from './modals/UserModal';
-import { IUser } from '../../models/User';
+import { IAthlete } from '../../models/athlete';
 
-const TABLE_HEAD = ['ID', 'Name', 'Email', ''];
+const TABLE_HEAD = ['Navn', 'Køn', 'Alder', 'Klub', ''];
 
 export default function Table() {
-    const [users, setUsers] = useState<IUser[]>([]);
-    const [selectedUser, setSelectedUser] = useState<IUser | null>(null);
+    const [users, setUsers] = useState<IAthlete[]>([]);
+    const [selectedUser, setSelectedUser] = useState<IAthlete | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -18,11 +18,11 @@ export default function Table() {
         });
     }, []);
 
-    function onEditClick(user: IUser | null | undefined) {
-        if (user == null) {
+    function onEditClick(athlete: IAthlete | null | undefined) {
+        if (athlete == null) {
             return;
         }
-        setSelectedUser(user);
+        setSelectedUser(athlete);
         setIsModalOpen(true);
     }
 
@@ -45,21 +45,26 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(({ id, username, email }) => (
+                    {users.map(({ id, name, sex, age, club }) => (
                         <tr key={id} className="even:bg-gray-50 odd:bg-gray-200 hover:bg-gray-400">
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {id}
+                                    {name}
                                 </Typography>
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {username}
+                                    {sex}
                                 </Typography>
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {email}
+                                    {age}
+                                </Typography>
+                            </td>
+                            <td className="p-4">
+                                <Typography variant="small" color="blue-gray" className="font-normal">
+                                    {club}
                                 </Typography>
                             </td>
                             <td className="p-4">

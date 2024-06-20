@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from '@material-tailwind/react';
-import { IUser } from '../../../models/User';
+import { IUser } from '../../../models/athlete';
 
 type UserModalProps = {
     user: IUser | null;

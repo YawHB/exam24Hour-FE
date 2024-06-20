@@ -2,8 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import PageLayout from './components/containers/PageLayout';
 import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
 import Nav from './components/Nav';
+import AthleteDetailsPage from './pages/AthleteDetailsPage';
+import AthletesPage from './pages/AthletesPage';
+import DisciplinesPage from './pages/DisciplinesPage';
+import ResultsPage from './pages/ResultsPage';
 
 function App() {
     return (
@@ -12,7 +15,10 @@ function App() {
             <PageLayout>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/athlete-details" element={<AthleteDetailsPage />} />
+                    <Route path="/athletes" element={<AthletesPage />} />
+                    <Route path="/disciplines" element={<DisciplinesPage />} />
+                    <Route path="/results" element={<ResultsPage />} />
                 </Routes>
             </PageLayout>
         </>
