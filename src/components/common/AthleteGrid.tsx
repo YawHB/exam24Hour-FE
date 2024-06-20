@@ -1,5 +1,7 @@
 import ButtonProp from './Button';
-import { IAthlete, IDiscipline } from '../../models/athlete';
+import { IAthlete } from '../../models/athlete';
+import EditAthleteModal from './modals/EditAthleteModal';
+import { useState } from 'react';
 
 interface AthleteGridProps {
     athlete: IAthlete;
@@ -8,6 +10,19 @@ interface AthleteGridProps {
 }
 
 export default function AthleteGrid({ athlete, onDelete, onEdit }: AthleteGridProps) {
+    const [open, setOpen] = useState(false);
+    const [selectedAthlete, setSelectedAthlete] = useState(null);
+
+    const handleOpen = (athlete: IAthlete) => {
+        setSelectedAthlete(athlete);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setSelectedAthlete(null);
+        setOpen(false);
+    };
+
     return (
         <div>
             <h1>Athlete Grid</h1>
@@ -30,15 +45,22 @@ export default function AthleteGrid({ athlete, onDelete, onEdit }: AthleteGridPr
                 </div>
                 <div>
                     <p>Discipliner</p>
-                    <div>{athlete.disciplines ? athlete.disciplines.map((discipline) => discipline.name).join(', ') : ''}</div>{' '}
+                    <div>{athlete.disciplines ? athlete.disciplines.map((discipline) => discipline.name).join(', ') : ''}</div>
                 </div>
                 <div>
                     <ButtonProp buttonType="cancel" onClick={() => onDelete(athlete)}>
                         Delete
                     </ButtonProp>
-                    <ButtonProp buttonType="neutral" onClick={() => onEdit(athlete)}>
+                    <ButtonProp
+                        buttonType="neutral"
+                        onClick={() => {
+                            onEdit(athlete);
+                            handleOpen(athlete);
+                        }}
+                    >
                         Edit
                     </ButtonProp>
+                    {open && <EditAthleteModal open={open} onClose={handleClose} athlete={selectedAthlete} />}
                 </div>
             </div>
         </div>
