@@ -26,18 +26,3 @@ function App() {
 }
 
 export default App;
-
-{
-    /* <h1 className="font-xl color text-primary text-3xl "> Custom Components Playground</h1>
-<h1 className="font-xl color text-distant text-3xl "> Custom Components Playground</h1> */
-}
-
-{
-    /* <ButtonProp buttonType={'default'}>Click me!</ButtonProp> */
-}
-{
-    /* <Table></Table> */
-}
-{
-    /* <Form /> */
-}
