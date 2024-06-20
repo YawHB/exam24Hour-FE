@@ -2,6 +2,7 @@ import ButtonProp from './Button';
 import { IAthlete } from '../../models/athlete';
 import EditAthleteModal from './modals/EditAthleteModal';
 import { useState } from 'react';
+import apiDeleteAthlete from '../../apiHandlers/delete/apiDeleteAthlete';
 
 interface AthleteGridProps {
     athlete: IAthlete;
@@ -22,6 +23,11 @@ export default function AthleteGrid({ athlete, onDelete, onEdit }: AthleteGridPr
         setSelectedAthlete(null);
         setOpen(false);
     };
+
+    function handleDelete(athlete: IAthlete) {
+        console.log(athlete);
+        apiDeleteAthlete(athlete);
+    }
 
     return (
         <div>
@@ -48,7 +54,7 @@ export default function AthleteGrid({ athlete, onDelete, onEdit }: AthleteGridPr
                     <div>{athlete.disciplines ? athlete.disciplines.map((discipline) => discipline.name).join(', ') : ''}</div>
                 </div>
                 <div>
-                    <ButtonProp buttonType="cancel" onClick={() => onDelete(athlete)}>
+                    <ButtonProp buttonType="cancel" onClick={() => handleDelete(athlete)}>
                         Delete
                     </ButtonProp>
                     <ButtonProp
