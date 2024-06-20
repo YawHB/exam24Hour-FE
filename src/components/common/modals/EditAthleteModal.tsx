@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IAthlete, IDiscipline } from '../../../models/athlete';
-import { Button, Dialog, Card, CardHeader, CardBody, CardFooter, Typography, Input, Checkbox } from '@material-tailwind/react';
+import { Button, Dialog, Card, CardBody, CardFooter, Typography, Input, Checkbox } from '@material-tailwind/react';
 import { getAllDisciplines } from '../../../apiHandlers/get/apiGetAllDisciplines';
 
 interface DialogWithFormProps {

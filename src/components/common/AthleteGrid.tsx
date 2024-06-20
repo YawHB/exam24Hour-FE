@@ -11,7 +11,7 @@ interface AthleteGridProps {
 
 export default function AthleteGrid({ athlete, onDelete, onEdit }: AthleteGridProps) {
     const [open, setOpen] = useState(false);
-    const [selectedAthlete, setSelectedAthlete] = useState(null);
+    const [selectedAthlete, setSelectedAthlete] = useState<IAthlete | null>(null);
 
     const handleOpen = (athlete: IAthlete) => {
         setSelectedAthlete(athlete);
