@@ -1,6 +1,7 @@
 export interface IDiscipline {
     id?: number;
     name: string;
+    resultType: 'DISTANCE' | 'TIME' | 'POINTS';
 }
 
 export interface IAthlete {

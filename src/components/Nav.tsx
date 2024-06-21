@@ -15,10 +15,10 @@ export default function Nav() {
                         <NavLink to="athlete-details">Athlete Details</NavLink>
                     </div>
                     <div>
-                        <NavLink to="disciplines">Athlete Details</NavLink>
+                        <NavLink to="results">Resultat Oversigt</NavLink>
                     </div>
                     <div>
-                        <NavLink to="results">Athlete Details</NavLink>
+                        <NavLink to="disciplines">Disciplin Oversigt</NavLink>
                     </div>
                 </nav>
             </header>

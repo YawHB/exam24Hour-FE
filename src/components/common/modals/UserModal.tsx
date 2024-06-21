@@ -1,5 +1,6 @@
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from '@material-tailwind/react';
 import { IAthlete } from '../../../models/athlete';
+import { resultTypeTranslations } from '../../../utils.ts/resultTypeDictionary';
 
 type AthleteModalProps = {
     athlete: IAthlete | null;
@@ -24,7 +25,10 @@ export default function UserModal({ athlete, open, onClose }: AthleteModalProps)
                         <p>Klub: {athlete?.club}</p>
                         <p className="font-bold">Disciplin:</p>
                         {athlete?.disciplines?.map((discipline, index) => (
-                            <p key={index}> {discipline.name}</p>
+                            <p key={index}>
+                                {' '}
+                                {discipline.name} - {resultTypeTranslations[discipline.resultType]}
+                            </p>
                         ))}{' '}
                     </div>
                 </DialogBody>
