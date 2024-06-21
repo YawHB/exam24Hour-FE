@@ -4,22 +4,31 @@ import ButtonProp from './Button';
 import UserModal from './modals/UserModal';
 import { getAllDisciplines } from '../../apiHandlers/get/apiGetAllResults';
 
+type Result = {
+    name: string;
+    sex: string;
+    age: number;
+    club: string;
+    resultType: string;
+    date: string;
+    resultValue: string;
+    disciplineName: string;
+};
+
 const TABLE_HEAD = ['Atlet Navn', 'Køn', 'Alder', 'Klub', 'Resultat Type', 'Dato', 'Resultat Værdi', ''];
 
 export default function ResultsTable() {
-    const [results, setResults] = useState<any[]>([]); // replace any with your results type
-    const [selectedResult, setSelectedResult] = useState<any | null>(null); // replace any with your results type
+    const [results, setResults] = useState<Result[]>([]);
+    const [selectedResult, setSelectedResult] = useState<Result | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        // replace with your function to fetch results
         getAllDisciplines().then((data) => {
             setResults(data);
         });
     }, []);
 
-    function onEditClick(result: any | null | undefined) {
-        // replace any with your results type
+    function onEditClick(result: Result | null | undefined) {
         if (result == null) {
             return;
         }
@@ -32,7 +41,7 @@ export default function ResultsTable() {
     }
 
     // Group results by disciplineName
-    const groupedResults = results.reduce((groups, result) => {
+    const groupedResults = results.reduce<Record<string, Result[]>>((groups, result) => {
         const key = result.disciplineName;
         if (!groups[key]) {
             groups[key] = [];
@@ -62,15 +71,17 @@ export default function ResultsTable() {
                             <tbody>
                                 {groupResults.map((result, index) => (
                                     <tr key={index}>
-                                        <td>{result.athleteName}</td>
-                                        <td>{result.athleteSex}</td>
-                                        <td>{result.athleteAge}</td>
-                                        <td>{result.athleteClub}</td>
+                                        <td>{result.name}</td>
+                                        <td>{result.sex}</td>
+                                        <td>{result.age}</td>
+                                        <td>{result.club}</td>
                                         <td>{result.resultType}</td>
                                         <td>{result.date}</td>
                                         <td>{result.resultValue}</td>
                                         <td>
-                                            <ButtonProp buttonType="neutral" onClick={() => onEditClick(result)} />
+                                            <ButtonProp buttonType="neutral" onClick={() => onEditClick(result)}>
+                                                Hey
+                                            </ButtonProp>
                                         </td>
                                     </tr>
                                 ))}
@@ -79,7 +90,7 @@ export default function ResultsTable() {
                     </Card>
                 </div>
             ))}
-            {selectedResult && <UserModal open={isModalOpen} onClose={closeModal} result={selectedResult} />}
+            {selectedResult && <UserModal open={isModalOpen} onClose={closeModal} athlete={selectedResult} />}
         </div>
     );
 }

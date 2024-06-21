@@ -1,7 +1,7 @@
 import { Card, Input, Button, Typography } from '@material-tailwind/react';
 import { useState } from 'react';
 import { createAthlete } from '../../apiHandlers/post/apiCreateAthlete';
-//import { IDiscipline } from '../../models/athlete';
+import { IAthlete } from '../../models/athlete';
 
 export default function Form() {
     const [name, setName] = useState('');
@@ -29,7 +29,7 @@ export default function Form() {
         };
         console.log(athlete);
 
-        createAthlete(athlete)
+        createAthlete(athlete as unknown as IAthlete)
             .then((createdAthlete) => console.log(createdAthlete))
             .catch((error) => console.error(error));
     };
